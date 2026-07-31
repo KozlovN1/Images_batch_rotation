@@ -1,34 +1,23 @@
 function imb_rotation(directory)
 % Rotation of images. Processing in batch mode.
 % v. 1.1
-% 2026-06-30. Nick Kozlov
+% 2026-06-31. Nick Kozlov
 % Change log:
 % Organize the program as a function.
 
 %% Init
 if isempty(directory)
     init_all;
-% prompt = strcat('Do you want to CLEAN and restart over?');
-% dlgtitle = 'Restart over: y/n?';
-% definput = {'n'};
-% dims = [1 50];
-% answer = inputdlg(prompt,dlgtitle,dims,definput);
-% if answer{1,1} == 'y'
-%     clc; clear all; close all;
-% elseif answer{1,1} == 'n'
-% else
-%     disp('I did not understand the answer: y or n?'); % This part is merely informative, no real action taken.
-% end
+    if  exist('directory','var') == 1 && ischar(directory)
+        directory=uigetdir(directory,'Directory containing the images you want to PROCESS');
+    else
+        directory=uigetdir([],'Directory containing the images you want to PROCESS');
+    end
 end
 
 %% Parameters
 % some wizard here
 %_select directories_%
-if  exist('directory','var') == 1 && ischar(directory)
-    directory=uigetdir(directory,'Directory containing the images you want to PROCESS');
-else
-    directory=uigetdir([],'Directory containing the images you want to PROCESS');
-end
 if  exist('exportdir','var')==1 && ischar(exportdir)
     exportdir=uigetdir(exportdir,'Where to SAVE the figures files?');
 else
@@ -84,7 +73,8 @@ end
 
 %% Program main body
 %_get the list of files_%
-direc = dir([directory,filesep,suffix]); filenames={};
+direc = dir(strcat(directory,filesep,suffix)); 
+filenames={};
 [filenames{1:length(direc),1}] = deal(direc.name);
 filenames = sortrows(filenames);
 %_%
@@ -168,7 +158,7 @@ if ceil(2*x_c) <= size(im,2)
     ColEnd = ceil(2*x_c);
 else
     msgbox("Column boundary exceeded - reducing.");
-    ColStart = 2*x_c - size(im,2); % v. 1b9
+    ColStart = 2*round(x_c) - size(im,2); % v. 1b9
     ColEnd = size(im,2); % v. 1b9
 end
 if ceil(2*y_c) <= size(im,1)
@@ -176,7 +166,7 @@ if ceil(2*y_c) <= size(im,1)
     RowEnd = ceil(2*y_c);
 else
     msgbox("Row boundary exceeded - reducing.");
-    RowStart = 2*y_c - size(im,1); % v. 1b9
+    RowStart = 2*round(y_c) - size(im,1); % v. 1b9
     RowEnd = size(im,1); % v. 1b9
 end
 if showfigure == true; cnt = 0; fig = figure; end
