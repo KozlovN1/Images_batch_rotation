@@ -1,9 +1,10 @@
 function imb_rotation(directory)
 % Rotation of images. Processing in batch mode.
-% v. 1.1
+% v. 1.2
 % 2026-06-31. Nick Kozlov
 % Change log:
 % Organize the program as a function.
+version = '1.2';
 
 %% Init
 if isempty(directory)
@@ -24,8 +25,8 @@ else
     exportdir=uigetdir(directory,'Where to SAVE the figures files?');
 end
 %_Check the config file_%
-if isfile(strcat(directory,filesep,'rotation.conf') )
-    conffile = fopen(strcat(directory,filesep,'rotation.conf') );
+if isfile(strcat(directory,filesep,'imb_rotation.conf') )
+    conffile = fopen(strcat(directory,filesep,'imb_rotation.conf') );
     fgets(conffile);
     anglemode = fgetl(conffile); % 1 - manually input a fixed angle, 2 - rotation at constant rate: fixed angle * number of steps, 3 - read the angle value from a file
     suffix = fgetl(conffile); % *.bmp or *.tif or *.jpg or *.tiff or *.jpeg
@@ -207,9 +208,11 @@ for i=Nstart:1:Nfiles
 end
 
 %% Save the parameters last used
-conffile = fopen(strcat(directory,filesep,'rotation.conf'), 'w');
+[~, scriptname, ~] = fileparts(mfilename('fullpath'));
+conffile = fopen(strcat(directory,filesep,'imb_rotation.conf'), 'w');
 fprintf(conffile, '%s ', 'The parameters registered on');
-fprintf(conffile, '%s\n', string(datetime) );
+fprintf(conffile, '%s ', string(datetime) );
+fprintf(conffile, 'by %s v. %s\n', scriptname, version);
 fprintf(conffile, '%i\n%s\n%i\n', anglemode, suffix, showfigure);
 if anglemode == 3
     fprintf(conffile, '%s\n', phi_file, '', '', '');
