@@ -222,3 +222,4 @@ end
 if anglemode == 1; fprintf(conffile, '%g\n', phi, x_c, y_c); end
 if anglemode == 2; fprintf(conffile, '%g\n', rate, x_c, y_c); end
 fclose(conffile);
+end
