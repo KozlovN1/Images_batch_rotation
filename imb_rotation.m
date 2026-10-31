@@ -1,14 +1,14 @@
 function imb_rotation(directory)
 % Rotation of images. Processing in batch mode.
-% v. 1.2
-% 2026-06-31. Nick Kozlov
+% v. 1.2.1
+% 2026-10-31. Nick Kozlov
 % Change log:
 % Organize the program as a function.
-version = '1.2';
+version = '1.2.1';
 
 %% Init
 if isempty(directory)
-    init_all;
+    % init_all; % off by default since v. 1.3; uncomment if you need suggesting cleaning the workspace
     if  exist('directory','var') == 1 && ischar(directory)
         directory=uigetdir(directory,'Directory containing the images you want to PROCESS');
     else
