@@ -1,14 +1,61 @@
 function imb_rotation(directory)
+% IMB_ROTATION     opens a sequence of dialog boxes guiding user to select
+% a series of images that need to be rotated and then performs the rotation.
+% The program performs the rotation of a series of raster images in a 
+% chosen mode and saves the resulting images in a designated directory.
+% 
+%   IMB_ROTATION('') starts in the directory the program is installed to
+%   IMB_ROTATION(DIRECTORY) starts in the directory DIRECTORY
+%
+%   PARAMETERS
+%   anglemode   may take one of the three values:
+%     1 - manually input a fixed angle, 
+%     2 - rotation at constant rate: fixed angle * number of steps, 
+%     3 - read the angle value from a file
+% 
+%   suffix   may take the following values:
+%     *.bmp or *.tif or *.jpg or *.tiff or *.jpeg
+% 
+%   phi_file  should point to a specially formatted file: 
+%     the file should contain four columns with names "phi,x_c,y_c,dphase" 
+%     - vector|value|value|value
+% 
+%   x_c and y_c   are the desired coordinates of the center of rotation 
+%   (optional).
+
+% -------------------------------------------------
 % Rotation of images. Processing in batch mode.
-% v. 1.2.1
-% 2026-10-31. Nick Kozlov
-% Change log:
-% Organize the program as a function.
-version = '1.2.1';
+% v. 1.2.2
+% 2026-11-01. Nick Kozlov
+% 
+% -------------------------------------------------
+% MIT License
+% 
+% Copyright (c) 2022 Nick Kozlov (KozlovN1 @ github)
+% 
+% Permission is hereby granted, free of charge, to any person obtaining a copy
+% of this software and associated documentation files (the "Software"), to deal
+% in the Software without restriction, including without limitation the rights
+% to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+% copies of the Software, and to permit persons to whom the Software is
+% furnished to do so, subject to the following conditions:
+% 
+% The above copyright notice and this permission notice shall be included in all
+% copies or substantial portions of the Software.
+% 
+% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+% FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+% AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+% LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+% OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+% SOFTWARE.
+
+version = '1.2.2';
 
 %% Init
 if isempty(directory)
-    % init_all; % off by default since v. 1.3; uncomment if you need suggesting cleaning the workspace
+    % init_all; % off by default since v. 1.2.1; uncomment if you need suggesting cleaning the workspace
     if  exist('directory','var') == 1 && ischar(directory)
         directory=uigetdir(directory,'Directory containing the images you want to PROCESS');
     else
