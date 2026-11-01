@@ -25,7 +25,7 @@ function imb_rotation(directory)
 
 % -------------------------------------------------
 % Rotation of images. Processing in batch mode.
-% v. 1.2.2
+% v. 1.2.3
 % 2026-11-01. Nick Kozlov
 % 
 % -------------------------------------------------

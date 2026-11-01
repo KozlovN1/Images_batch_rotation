@@ -1,0 +1,75 @@
+<deployment-project plugin="plugin.apptool" plugin-version="1.0">
+  <configuration build-checksum="2969324949" file="/home/nk/MATLAB/Images_batch_rotation/imb_rotation.prj" location="/home/nk/MATLAB/Images_batch_rotation" name="imb_rotation" target="target.mlapps" target-name="Package App">
+    <param.appname>imb_rotation</param.appname>
+    <param.authnamewatermark>Nick Kozlov</param.authnamewatermark>
+    <param.email />
+    <param.company />
+    <param.icon />
+    <param.icons />
+    <param.summary>The program performs the rotation of a series of raster images in a chosen mode and saves the resulting images in a designated directory</param.summary>
+    <param.description>The program is designed primarily to preprocess series of images obtained in experiments. It operates in one of three modes numerated in accordance with the complexity of the transformation. Mode 1 rotates all the images at the same angle, defined by user. Mode 2 is for the case when the filmed object is at rotation with a constant rate: so, user has to provide the number of frames per revolution, and the angle is calculated for each image (the program expects there are no omitted images). Mode 3 is for the case of rotation at a varying rate (for instance, rotational oscillations, or libration): a special file is to be prepared containing the data on the coordinate of each image, the program then reads this data and rotates all the images so as to see the rotating object immobile.
+
+The resulting images are exported in the same format as the original ones. Three formats are supported: *.bmp, *.tif (exported uncompressed), *.jpg (exported 100 quality).
+
+Upon the launch the program shows a wizard allowing to configure its parameters. After a successfull execution the parameters are safed in a config file in the directory with images. When the program is run repeatedly in the same folder the pararmeters are taken from this file and can be modified.
+The rotation functionality itself depends on the Image Processing Toolbox.</param.description>
+    <param.screenshot />
+    <param.version>1.2.3</param.version>
+    <param.products.name>
+      <item>Image Processing Toolbox</item>
+    </param.products.name>
+    <param.products.id>
+      <item>17</item>
+    </param.products.id>
+    <param.products.version>
+      <item>23.2</item>
+    </param.products.version>
+    <param.platforms />
+    <param.output>${PROJECT_ROOT}/mlapp</param.output>
+    <param.guid>86a625bc-30f0-4ed1-b81c-cf5a51b477ee</param.guid>
+    <unset>
+      <param.email />
+      <param.company />
+      <param.icon />
+      <param.icons />
+      <param.screenshot />
+      <param.platforms />
+    </unset>
+    <fileset.main>
+      <file>${PROJECT_ROOT}/imb_rotation.m</file>
+    </fileset.main>
+    <fileset.depfun />
+    <fileset.resources />
+    <fileset.package />
+    <build-deliverables>
+      <file location="${PROJECT_ROOT}" name="mlapp" optional="false">/home/nk/MATLAB/Images_batch_rotation/mlapp</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>/usr/local/MATLAB/R2023b</root>
+      <toolboxes>
+        <toolbox name="matlabcoder" />
+      </toolboxes>
+      <toolbox>
+        <matlabcoder>
+          <enabled>true</enabled>
+        </matlabcoder>
+      </toolbox>
+    </matlab>
+    <platform>
+      <unix>true</unix>
+      <mac>false</mac>
+      <windows>false</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>true</linux>
+      <solaris>false</solaris>
+      <osver>5.4.0-216-generic</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>glnxa64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>
