@@ -25,7 +25,7 @@ function imb_rotation(directory)
 
 % -------------------------------------------------
 % Rotation of images. Processing in batch mode.
-% v. 1.2.3
+% v. 1.2.4
 % 2026-11-01. Nick Kozlov
 % 
 % -------------------------------------------------
@@ -51,16 +51,14 @@ function imb_rotation(directory)
 % OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 % SOFTWARE.
 
-version = '1.2.2';
+version = '1.2.4';
 
 %% Init
-if isempty(directory)
-    % init_all; % off by default since v. 1.2.1; uncomment if you need suggesting cleaning the workspace
-    if  exist('directory','var') == 1 && ischar(directory)
-        directory=uigetdir(directory,'Directory containing the images you want to PROCESS');
-    else
-        directory=uigetdir([],'Directory containing the images you want to PROCESS');
-    end
+% init_all; % off by default since v. 1.2.1; uncomment if you need suggesting cleaning the workspace
+if  exist('directory','var') == 1 && ischar(directory)
+    directory=uigetdir(directory,'Directory containing the images you want to PROCESS');
+else
+    directory=uigetdir([],'Directory containing the images you want to PROCESS');
 end
 
 %% Parameters
